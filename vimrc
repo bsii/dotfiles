@@ -1,3 +1,13 @@
+" TODO expand tabs
+" TODO highlight trailing whitespace/unexpanded tab
+"
+" TODO align plugin
+" TODO creating easier "TODO" comment lines sequentially so I don't have to keep typing "TODO"
+" TODO disable / change behavior of comment char insertion on o/O/<CR>?
+" TODO amusements: key to toggle rightleft, haha?
+" TODO fix delete over preexisting text/tab/cr in insert mode
+" TODO line numbers / relative number toggles?
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set encoding=utf-8
@@ -9,7 +19,6 @@ let mapleader = ","
 " https://blog.hanschen.org/2012/10/24/different-background-color-in-vim-past-80-columns/
 highlight ColorColumn ctermbg=235 guibg=234
 let &colorcolumn=join(range(142,333),",")
-
 
 
 " set the runtime path to include Vundle and initialize
@@ -80,7 +89,8 @@ set laststatus=2 " Always display the statusline in all windows
 set guifont=Sauce\ Code\ Powerline:h20
 " set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-
+set hidden                  " Edit multiple unsaved files at the same time
+set confirm                 " Confirm save files on quit
 set ruler
 set incsearch
 set hlsearch
@@ -215,30 +225,4 @@ set pastetoggle=<F9>
 " ambiwidth is set to double).
 
 " highlight Comment cterm=italic
-
-
-
-" set confirm
-" http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
-" " function! ConfirmQuit(writeFile)
-" "     if (a:writeFile)
-" "         if (expand('%:t')=="")
-" "             echo "Can't save a file with no name."
-" "             return
-" "         endif
-" "         :write
-" "     endif
-
-" "     if (winnr('$')==1 && tabpagenr('$')==1)
-" "         if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
-" "             :quit
-" "         endif
-" "     else
-" "         :quit
-" "     endif
-" " endfu
-
-" " cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
-" " cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
-
 
