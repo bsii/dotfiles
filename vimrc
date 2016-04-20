@@ -49,13 +49,14 @@ filetype plugin indent on    " required
 
 syntax on
 filetype on
+
 au BufNewFile,BufRead *.js set filetype=javascript
 au BufNewFile,BufRead *.json set filetype=javascript
-
+au BufRead,BufNewFile *.zshrc set filetype=zsh
 
 set wildchar=<Tab> 
 set wildmenu 
-set wildmode=longest:longest,full
+set wildmode=longest,full
 
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/powerline/bindings/vim
 
@@ -79,3 +80,20 @@ set laststatus=2 " Always display the statusline in all windows
 set guifont=Sauce\ Code\ Powerline:h20
 " set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
+
+set ruler
+set incsearch
+set hlsearch
+set ignorecase              " case insensitive search
+set smartcase               "if any capitol in search, turns search case sensitive
+set history=1000             "Remember 1000 lines of history, for commands and searches
+set showmatch                " jump to match bracket on insertion
+set background=dark
+
+:if has('syntax')
+    syntax on
+:endif
+
+
+
+nnoremap <F5> :GundoToggle<CR>
