@@ -4,6 +4,7 @@
 " TODO amusements: key to toggle rightleft, haha?
 " TODO fix delete over preexisting text/tab/cr in insert mode
 " TODO line numbers / relative number toggles?
+" TODO ensure ~/.vim/swapfiles exists, or add alternate options at end
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -101,6 +102,9 @@ set expandtab                " use appropriate number of spaces in place of a ta
 set sw=4                     " shiftwidth 4 spaces for each step of (auto)indent
 set list                       " Show tabs and trailing whitespace
 set listchars=tab:⇥\ ,trail:·  " with nicer looking chars
+set directory=$HOME/.vim/swapfiles//
+set backupdir=$HOME/.vim/swapfiles//
+
 
 :if has('syntax')
     syntax on
@@ -186,14 +190,15 @@ set pastetoggle=<F9>
 "   "Add Align map for =
 "   nmap ga :Align =<CR>
 "
-" "Visual Mode Maps
-"   "Visual mode comment adding
+" Visual mode comment adding
+" Visual Mode Maps.  Err... PERL SPECIFIC vmode maps.  =p
 "   vmap <C-C> :s/^/#/g<enter>  " control-c comments block
 "   vmap <C-X> :s/^#//g<enter>  " control-x uncomments block
 "   vmap <C-A> :Align =<enter>  " Align =  in block
 "   vmap <C-H> :Align =><enter> " Align => in block
 "
 " "Insert Mode Maps
+" " WTF 2016-04-20 where the heck did I even get these?  amzn?
 "   "map ctrl-a and ctrl-e to act like emacs
 "   imap <C-A> <C-O>^
 "   imap <C-E> <C-O>$
