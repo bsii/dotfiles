@@ -99,6 +99,13 @@ set smartcase               "if any capitol in search, turns search case sensiti
 set history=1000             "Remember 1000 lines of history, for commands and searches
 set showmatch                " jump to match bracket on insertion
 set background=dark
+set backspace=2                     " allow backspacing over autoindent, line breaks, and start of insert
+set smarttab                 " make TAB and BS create and remove appropriate number of spaces
+set tabstop=4
+set expandtab                " use appropriate number of spaces in place of a tab.  use C-v<tab> for a real tab
+set sw=4                     " shiftwidth 4 spaces for each step of (auto)indent
+set list                       " Show tabs and trailing whitespace
+set listchars=tab:⇥\ ,trail:·  " with nicer looking chars
 
 :if has('syntax')
     syntax on
@@ -137,11 +144,6 @@ set pastetoggle=<F9>
 
 " 
 " set autoindent               " copy indent from current line when starting a new line
-" set backspace=2                     " allow backspacing over autoindent, line breaks, and start of insert
-" set smarttab                 " make TAB and BS create and remove appropriate number of spaces
-" set tabstop=4
-" set expandtab                " use appropriate number of spaces in place of a tab.  use C-v<tab> for a real tab
-" set sw=4                     " shiftwidth 4 spaces for each step of (auto)indent
 " set formatoptions=cqtb       " c = autowrap comments with textwidth
 "                              " q = allow formatting of comments with gq
 "                              " t = auto-wrap text using text-width
