@@ -94,10 +94,21 @@ set background=dark
     syntax on
 :endif
 
+" toggle (invert) the current paste state and show new state
+"" http://of-vim-and-vigor.blogspot.com/2012/01/one-key-to-toggle-them-all.html
+function! PasteToggle()
+	set invpaste
+	set paste?
+endfunction
 
-
+" gundo
 nnoremap <F5> :GundoToggle<CR>
 
+" paste toggles
+" TODO find a better mapping?
+nnoremap <F9> :call PasteToggle()<CR>
+vnoremap <F9> :<c-u>call PasteToggle()<CR>gv
+set pastetoggle=<F9>
 
 
 
@@ -186,3 +197,6 @@ nnoremap <F5> :GundoToggle<CR>
 "   command -nargs=0 Edit :!p4 edit %
 "   command -nargs=0 Revert :!p4 revert %
 " 
+" set completeopt=menuone,preview
+"
+"
