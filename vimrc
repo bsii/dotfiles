@@ -94,15 +94,17 @@ set background=dark
     syntax on
 :endif
 
+
+" gundo
+nnoremap <F5> :GundoToggle<CR>
+
+
 " toggle (invert) the current paste state and show new state
 "" http://of-vim-and-vigor.blogspot.com/2012/01/one-key-to-toggle-them-all.html
 function! PasteToggle()
 	set invpaste
 	set paste?
 endfunction
-
-" gundo
-nnoremap <F5> :GundoToggle<CR>
 
 " paste toggles
 " TODO find a better mapping?
@@ -200,3 +202,43 @@ set pastetoggle=<F9>
 " set completeopt=menuone,preview
 "
 "
+"" view current color schemes..
+"" http://stackoverflow.com/questions/11553374/how-to-print-vim-current-color-scheme
+"   :so $VIMRUNTIME/syntax/hitest.vim
+"   :runtime syntax/hitest.vim
+"" 
+" :runtime syntax/colortest.vim
+ 
+" My vim statusline is not displayed completely and has too much spaces
+" Be sure you have ambiwidth option set to single.
+" Alternative: set ambiwidth to 2, remove fancy dividers (they suck when
+" ambiwidth is set to double).
+
+" highlight Comment cterm=italic
+
+
+
+" set confirm
+" http://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally
+" " function! ConfirmQuit(writeFile)
+" "     if (a:writeFile)
+" "         if (expand('%:t')=="")
+" "             echo "Can't save a file with no name."
+" "             return
+" "         endif
+" "         :write
+" "     endif
+
+" "     if (winnr('$')==1 && tabpagenr('$')==1)
+" "         if (confirm("Do you really want to quit?", "&Yes\n&No", 2)==1)
+" "             :quit
+" "         endif
+" "     else
+" "         :quit
+" "     endif
+" " endfu
+
+" " cnoremap <silent> q<CR>  :call ConfirmQuit(0)<CR>
+" " cnoremap <silent> x<CR>  :call ConfirmQuit(1)<CR>
+
+
