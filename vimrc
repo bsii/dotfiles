@@ -236,14 +236,14 @@ highlight CursorLineNr ctermbg=12
 
 
 " 2016-04-20
-" TODO creating easier "TODO" comment lines sequentially so I don't have to keep typing "TODO"
+" TODO creating easier TODO comment lines sequentially so I don't have to keep typing " TODO
 " TODO disable / change behavior of comment char insertion on o/O/<CR>?
 " TODO amusements: key to toggle rightleft, haha?
 " TODO line numbers / relative number toggles?
 " TODO ensure ~/.vim/swapfiles exists, or add alternate options at end
-" TODO let's not append straight to vimrc eh?
 " TODO longer lines by default before wrapping
-" TODO (less) pass mouse events through tmux to less scrolling?
+" TODO (in `less`) pass mouse events through tmux to less scrolling?
 
 " 2016-04-21
-" TODO fix visual mode highlight color
+" TODO better visual mode highlight color.
+" TODO different keybinding for ctrl-p.  emacs brain types that too often to mean something else.
