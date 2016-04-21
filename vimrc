@@ -1,10 +1,7 @@
-" TODO align plugin
-" TODO creating easier "TODO" comment lines sequentially so I don't have to keep typing "TODO"
-" TODO disable / change behavior of comment char insertion on o/O/<CR>?
-" TODO amusements: key to toggle rightleft, haha?
-" TODO fix delete over preexisting text/tab/cr in insert mode
-" TODO line numbers / relative number toggles?
-" TODO ensure ~/.vim/swapfiles exists, or add alternate options at end
+" TODO lines are at EOF for easy appending
+
+" for future reference:
+"  http://of-vim-and-vigor.blogspot.com/2012/05/my-vimrc.html
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -18,12 +15,12 @@ let mapleader = ","
 highlight ColorColumn ctermbg=235 guibg=234
 let &colorcolumn=join(range(142,333),",")
 
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     " let Vundle manage Vundle, required
     Plugin 'VundleVim/Vundle.vim'
+    Plugin 'Align'
 
     Plugin 'scrooloose/NERDTree'
     Plugin 'jlanzarotta/bufexplorer'
@@ -40,9 +37,9 @@ call vundle#begin()
 
     Plugin 'tpope/vim-fugitive'
     Plugin 'powerline/powerline'
-    Plugin 'L9'
-
-    Plugin 'scratch.vim'
+    "" not using as of 2016-04-20
+    " Plugin 'L9'
+    " Plugin 'scratch.vim'  " not using as of 2016-04-20
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,7 +58,7 @@ au BufRead,BufNewFile *.zshrc set filetype=zsh
 
 set wildchar=<Tab>
 set wildmenu
-set wildmode=longest,full
+set wildmode=list:longest,full
 
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/powerline/bindings/vim
 
@@ -72,77 +69,75 @@ python powerline_setup()
 python del powerline_setup
 
 if ! has('gui_running')
-   set ttimeoutlen=10
-   augroup FastEscape
-      autocmd!
-      au InsertEnter * set timeoutlen=0
-      au InsertLeave * set timeoutlen=1000
-   augroup END
+    set ttimeoutlen=10
+    set guifont=Sauce\ Code\ Powerline:h20
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
 endif
 
 set fillchars+=stl:\ ,stlnc:\
 set laststatus=2 " Always display the statusline in all windows
-set guifont=Sauce\ Code\ Powerline:h20
+set cmdheight=2                " Prevent "Press Enter" message after most commands " TODO eval
+
 " set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 set hidden                  " Edit multiple unsaved files at the same time
 set confirm                 " Confirm save files on quit
-set ruler
+set viminfo='1000,f1,<500,:100,/100,h    " TODO eval these
+set history=1000            " Remember 1000 lines of history, for commands and searches
+
 set incsearch
 set hlsearch
 set ignorecase              " case insensitive search
 set smartcase               "if any capitol in search, turns search case sensitive
-set history=1000             "Remember 1000 lines of history, for commands and searches
 set showmatch                " jump to match bracket on insertion
+
+set ruler
+set number                     " Display line numbers at left of screen
+set visualbell                 " Flash the screen instead of beeping on errors
+set t_vb=                      " And then disable even the flashing
+set mouse=a                   " Enable mouse usage (all modes) in terminals
+set ttimeout ttimeoutlen=200  " Quickly time out on keycodes
+set notimeout                 " but never time out on mappings
+set list                      " Show tabs and trailing whitespace
+set listchars=tab:⇥\ ,trail:· " with nicer looking chars
+set shortmess=atI              " Limit Vim's "hit-enter" messages
 set background=dark
+
 set backspace=2                     " allow backspacing over autoindent, line breaks, and start of insert
 set smarttab                 " make TAB and BS create and remove appropriate number of spaces
 set tabstop=4
 set expandtab                " use appropriate number of spaces in place of a tab.  use C-v<tab> for a real tab
 set sw=4                     " shiftwidth 4 spaces for each step of (auto)indent
-set list                       " Show tabs and trailing whitespace
-set listchars=tab:⇥\ ,trail:·  " with nicer looking chars
+set autoindent                 " Sane indenting when filetype not recognised
+
+" TODO custom wrapping behaviors from dh/rc/zn configs
+set textwidth=140
+
 set directory=$HOME/.vim/swapfiles//
 set backupdir=$HOME/.vim/swapfiles//
 
+set pastetoggle=<F9>
 
-:if has('syntax')
-    syntax on
-:endif
 
 
 " gundo
 nnoremap <F5> :GundoToggle<CR>
 
 
-" toggle (invert) the current paste state and show new state
-"" http://of-vim-and-vigor.blogspot.com/2012/01/one-key-to-toggle-them-all.html
-function! PasteToggle()
-    set invpaste
-    set paste?
-endfunction
-
-" paste toggles
-" TODO find a better mapping?
-nnoremap <F9> :call PasteToggle()<CR>
-vnoremap <F9> :<c-u>call PasteToggle()<CR>gv
-set pastetoggle=<F9>
 
 
-
-
-""" OLD settings from dh/rc cvs, being reevaluated as of 2016-04-20 14:54
+""" OLD settings from dh or rc cvs/zn p4, being reevaluated as of 2016-04-20 14:54
 "
 " set cb=exclude:.*
 "
 " :nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>
 "
-" :if has('autocmd')
-" :endif
-"
 
 "
-" set autoindent               " copy indent from current line when starting a new line
 " set formatoptions=cqtb       " c = autowrap comments with textwidth
 "                              " q = allow formatting of comments with gq
 "                              " t = auto-wrap text using text-width
@@ -189,6 +184,7 @@ set pastetoggle=<F9>
 "
 "   "Add Align map for =
 "   nmap ga :Align =<CR>
+" nmap ga :Align <CR>
 "
 " Visual mode comment adding
 " Visual Mode Maps.  Err... PERL SPECIFIC vmode maps.  =p
@@ -198,7 +194,7 @@ set pastetoggle=<F9>
 "   vmap <C-H> :Align =><enter> " Align => in block
 "
 " "Insert Mode Maps
-" " WTF 2016-04-20 where the heck did I even get these?  amzn?
+" " WTF 2016-04-20 where the heck did I even get these?  zn?
 "   "map ctrl-a and ctrl-e to act like emacs
 "   imap <C-A> <C-O>^
 "   imap <C-E> <C-O>$
@@ -226,4 +222,26 @@ set pastetoggle=<F9>
 " ambiwidth is set to double).
 
 " highlight Comment cterm=italic
+" highlight LineNr ctermbg=DarkGrey
+" TODO needs work
+highlight clear
+highlight LineNr ctermfg=4
+highlight LineNr ctermbg=236
+highlight CursorLineNr ctermfg=236
+highlight CursorLineNr ctermbg=12
 
+
+
+
+
+" 2016-04-20
+" TODO align plugin
+" TODO creating easier "TODO" comment lines sequentially so I don't have to keep typing "TODO"
+" TODO disable / change behavior of comment char insertion on o/O/<CR>?
+" TODO amusements: key to toggle rightleft, haha?
+" TODO fix delete over preexisting text/tab/cr in insert mode
+" TODO line numbers / relative number toggles?
+" TODO ensure ~/.vim/swapfiles exists, or add alternate options at end
+" TODO let's not append straight to vimrc eh?
+" TODO longer lines by default before wrapping
+" TODO (less) pass mouse events through tmux to less scrolling?
