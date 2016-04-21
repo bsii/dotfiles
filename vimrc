@@ -79,42 +79,43 @@ if ! has('gui_running')
 endif
 
 set fillchars+=stl:\ ,stlnc:\
-set laststatus=2 " Always display the statusline in all windows
-set cmdheight=2                " Prevent "Press Enter" message after most commands " TODO eval
+set laststatus=2                      " Always display the statusline in all windows
+set cmdheight=2                       " Prevent "Press Enter" message after most commands " TODO eval
 
 " set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-set hidden                  " Edit multiple unsaved files at the same time
-set confirm                 " Confirm save files on quit
-set viminfo='1000,f1,<500,:100,/100,h    " TODO eval these
-set history=1000            " Remember 1000 lines of history, for commands and searches
+
+set hidden                            " Edit multiple unsaved files at the same time
+set confirm                           " Confirm save files on quit
+set viminfo='1000,f1,<500,:100,/100,h " TODO eval these
+set history=1000                      " Remember 1000 lines of history, for commands and searches
 
 set incsearch
 set hlsearch
-set ignorecase              " case insensitive search
-set smartcase               "if any capitol in search, turns search case sensitive
-set showmatch                " jump to match bracket on insertion
+set ignorecase                        " case insensitive search
+set smartcase                         " if any capitol in search, turns search case sensitive
+set showmatch                         " jump to match bracket on insertion
 
 set ruler
-set number                     " Display line numbers at left of screen
-set visualbell                 " Flash the screen instead of beeping on errors
-set t_vb=                      " And then disable even the flashing
-set mouse=a                   " Enable mouse usage (all modes) in terminals
-set ttimeout ttimeoutlen=200  " Quickly time out on keycodes
-set notimeout                 " but never time out on mappings
-set list                      " Show tabs and trailing whitespace
-set listchars=tab:⇥\ ,trail:· " with nicer looking chars
-set shortmess=atI              " Limit Vim's "hit-enter" messages
+set number                            " display line numbers at left of screen
+set visualbell                        " flash the screen instead of beeping on errors
+set t_vb=                             " and then disable even the flashing
+set mouse=a                           " enable mouse usage (all modes) in terminals
+set ttimeout ttimeoutlen=200          " quickly time out on keycodes
+set notimeout                         " but never time out on mappings
+set list                              " show tabs and trailing whitespace
+set listchars=tab:⇥\ ,trail:·         " with nicer looking chars
+set shortmess=ati                     " limit vim's "hit-enter" messages
 set background=dark
 
-set backspace=2                     " allow backspacing over autoindent, line breaks, and start of insert
-set smarttab                 " make TAB and BS create and remove appropriate number of spaces
+set backspace=2                       " allow backspacing over autoindent, line breaks, and start of insert
+set smarttab                          " make tab and bs create and remove appropriate number of spaces
 set tabstop=4
-set expandtab                " use appropriate number of spaces in place of a tab.  use C-v<tab> for a real tab
-set sw=4                     " shiftwidth 4 spaces for each step of (auto)indent
-set autoindent                 " Sane indenting when filetype not recognised
+set expandtab                         " use appropriate number of spaces in place of a tab.  use c-v<tab> for a real tab
+set sw=4                              " shiftwidth 4 spaces for each step of (auto)indent
+set autoindent                        " sane indenting when filetype not recognised
 
-" TODO custom wrapping behaviors from dh/rc/zn configs
+" todo custom wrapping behaviors from dh/rc/zn configs
 set textwidth=140
 
 set directory=$HOME/.vim/swapfiles//
