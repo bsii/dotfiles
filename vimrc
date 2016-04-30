@@ -3,8 +3,8 @@
 " for future reference:
 "  http://of-vim-and-vigor.blogspot.com/2012/05/my-vimrc.html
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 set encoding=utf-8
 set t_Co=256
 
@@ -12,7 +12,7 @@ set clipboard=unnamed
 let mapleader = ","
 
 " https://blog.hanschen.org/2012/10/24/different-background-color-in-vim-past-80-columns/
-highlight ColorColumn ctermbg=235 guibg=234
+highlight ColorColumn ctermbg=235
 let &colorcolumn=join(range(142,333),",")
 
 " set the runtime path to include Vundle and initialize
@@ -98,6 +98,7 @@ set showmatch                         " jump to match bracket on insertion
 
 set ruler
 set number                            " display line numbers at left of screen
+set relativenumber
 set visualbell                        " flash the screen instead of beeping on errors
 set t_vb=                             " and then disable even the flashing
 set mouse=a                           " enable mouse usage (all modes) in terminals
@@ -246,4 +247,6 @@ highlight CursorLineNr ctermbg=12
 
 " 2016-04-21
 " TODO better visual mode highlight color.
-" TODO different keybinding for ctrl-p.  emacs brain types that too often to mean something else.
+" TODO different keybinding for ctrl-p.  emacs brain types that too often to mean something else
+
+
