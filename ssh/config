@@ -1,0 +1,5 @@
+Host *
+#       IdentityFile ~/.ssh/id_dsa
+        KeepAlive yes
+	ServerAliveInterval 30
+	 # StrictHostKeyChecking no
